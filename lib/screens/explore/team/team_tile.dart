@@ -121,9 +121,9 @@ class _TeamTileState extends State<TeamTile> {
                               ElevatedButton(
                                 clipBehavior: Clip.hardEdge,
                                 onPressed: () {
-                                  final email = Uri(
+                                  final link = Uri(
                                       scheme: 'https', path: widget.linkedin);
-                                  dashboardVm.launchUrl(email);
+                                  dashboardVm.launchUrl(link.toString());
                                 },
                                 child: const Icon(FontAwesomeIcons.linkedin),
                               ),
@@ -133,7 +133,7 @@ class _TeamTileState extends State<TeamTile> {
                                 onPressed: () {
                                   final email =
                                       Uri(scheme: 'mailto', path: widget.id);
-                                  dashboardVm.launchUrl(email);
+                                  dashboardVm.launchUrl(email.toString());
                                 },
                                 // label: const Icon(Icons.email),
                               ),

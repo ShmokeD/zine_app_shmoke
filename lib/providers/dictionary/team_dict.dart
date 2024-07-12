@@ -24,6 +24,7 @@ class TeamScreenDict {
 class Team {
   String? name;
   String? image;
+  String? branch;
   String? email;
   String? linkedIn;
   String? bio;
@@ -31,6 +32,7 @@ class Team {
   Team({
     this.name = "",
     this.image = "",
+    this.branch = "",
     this.email = "",
     this.linkedIn = "",
     this.bio = "",
@@ -40,6 +42,7 @@ class Team {
     return Team(
       name: json["name"],
       image: json["image"],
+      branch: json['branch'] ?? 'ECE',
       email: json["email"],
       linkedIn: json["linkedin"] ?? 'zine.co.in',
       bio: json["bio"] ??

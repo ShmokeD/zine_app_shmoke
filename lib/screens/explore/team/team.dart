@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 import 'package:zineapp2023/components/widgets.dart';
+import 'package:zineapp2023/screens/explore/team/alumni_screen.dart';
 import '../../../components/gradient.dart';
 import '../../../components/tab_tiles.dart';
 import '../../../screens/explore/team/team_tile.dart';
@@ -17,7 +18,7 @@ class TeamScreen extends StatelessWidget {
     return Consumer<Language>(
       builder: (context, dict, _) {
         return DefaultTabController(
-          length: 3,
+          length: 4,
           child: Scaffold(
             backgroundColor: backgroundGrey,
             appBar: AppBar(
@@ -31,10 +32,12 @@ class TeamScreen extends StatelessWidget {
               centerTitle: true,
               title: appbarTitle("Team"),
               bottom: const TabBar(
+                isScrollable: true,
                 labelColor: Colors.white,
                 labelStyle: TextStyle(fontSize: 20),
                 unselectedLabelStyle: TextStyle(fontSize: 20),
                 unselectedLabelColor: Colors.white,
+                tabAlignment: TabAlignment.start,
                 indicator: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -43,17 +46,19 @@ class TeamScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                indicatorSize: TabBarIndicatorSize.label,
+                indicatorSize: TabBarIndicatorSize.tab,
                 indicatorColor: Colors.white,
                 tabs: [
                   WhiteTabTile(label: "2nd Year"),
                   WhiteTabTile(label: "3rd Year"),
                   WhiteTabTile(label: "4th Year"),
+                  WhiteTabTile(label: "Alumni")
                 ],
               ),
             ),
-            body: TabBarView(
-              children: [
+            body: TabBarView(children: [
+              ...[
+                //
                 // TabBarView Creates views with one child per Tab (each ListView.Builder)
                 for (int i = 0; i < 3; i++)
                   ListView.builder(
@@ -70,12 +75,14 @@ class TeamScreen extends StatelessWidget {
                               name: dict.teamScreen.team![i][index].name!,
                               id: dict.teamScreen.team![i][index].email!,
                               bio: dict.teamScreen.team![i][index].bio!,
-                              linkedin: dict.teamScreen.team![i][index].linkedIn!,
+                              linkedin:
+                                  dict.teamScreen.team![i][index].linkedIn!,
                             );
                     },
                   )
               ],
-            ),
+              AlumniScreen(teamDict: dict.teamScreen.team!)
+            ]),
           ),
         );
       },
