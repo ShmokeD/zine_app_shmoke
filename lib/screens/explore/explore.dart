@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:zineapp2023/screens/explore/view_model/timeline_vm.dart';
 import '../../common/routing.dart';
@@ -53,30 +54,94 @@ class Explore extends StatelessWidget {
                               ),
                             ),
                             child: SingleChildScrollView(
-                              child: GridView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: const EdgeInsets.all(35.0),
-                                itemCount: exploreCards.length,
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 20,
-                                  mainAxisSpacing: 20,
-                                ),
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return InkWell(
+                              child: Column(
+                                children: [
+                                  GridView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    padding: const EdgeInsets.only(
+                                        left: 35.0, top: 35, right: 35),
+                                    itemCount: exploreCards.length - 1,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 20,
+                                      mainAxisSpacing: 20,
+                                    ),
+                                    itemBuilder: (BuildContext ctx, index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          if (exploreCards[index]["route"] ==
+                                              RouteName.wokrshopTimeline) {
+                                            timelineVm.getStagesEvents();
+                                          }
+                                          timelineVm.routeMe(context,
+                                              exploreCards[index]["route"]!);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(5),
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(10),
+                                              ),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Color.fromRGBO(
+                                                      0, 0, 0, 0.1),
+                                                  offset: Offset(
+                                                    5.0,
+                                                    15.0,
+                                                  ),
+                                                  blurRadius: 20.0,
+                                                ),
+                                              ],
+                                            ),
+                                            child: Center(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    exploreCards[index]
+                                                        ["image"]!,
+                                                    height: 50,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Text(
+                                                    exploreCards[index]["name"]!
+                                                        .toUpperCase(),
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Color(0xff767D81),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  InkWell(
                                     onTap: () {
-                                      if (exploreCards[index]["route"] ==
-                                          RouteName.wokrshopTimeline) {
-                                        timelineVm.getStagesEvents();
-                                      }
-                                      timelineVm.routeMe(context,
-                                          exploreCards[index]["route"]!);
+                                      timelineVm.routeMe(
+                                          context, exploreCards.last["route"]!);
                                     },
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5),
+                                      padding: EdgeInsets.only(
+                                          left: 40, right: 40, top: 20),
                                       child: Container(
+                                        height: 150,
                                         decoration: const BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.all(
@@ -102,14 +167,14 @@ class Explore extends StatelessWidget {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Image.asset(
-                                                exploreCards[index]["image"]!,
+                                                exploreCards.last["image"]!,
                                                 height: 50,
                                               ),
                                               const SizedBox(
                                                 height: 10,
                                               ),
                                               Text(
-                                                exploreCards[index]["name"]!
+                                                exploreCards.last["name"]!
                                                     .toUpperCase(),
                                                 style: const TextStyle(
                                                   fontSize: 14,
@@ -122,8 +187,8 @@ class Explore extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
                             ),
                           ),

@@ -44,6 +44,7 @@ dependencies:
   flutter_notification_channel: ^2.0.0
   fluttertoast: ^8.1.2
   font_awesome_flutter: ^10.7.0
+  google_fonts: ^6.2.1
   http: ^1.1.0
   image_picker: ^1.0.5
   intl: ^0.19.0
@@ -104,19 +105,15 @@ flutter:
     # list giving the asset and other descriptors for the font. For
     # example:
 fonts:
-  - family: Poppins-Bold
-    fonts:
-      - asset: assets/poppins/Poppins-Bold.ttf
-  - family: Poppins-ExtraBold
-    fonts:
-      - asset: assets/poppins/Poppins-ExtraBold.ttf
-  - family: Poppins-Black
-    fonts:
-      - asset: assets/poppins/Poppins-Black.ttf
-        weight: 900
   - family: Poppins
     fonts:
       - asset: assets/poppins/Poppins-Regular.ttf
+        weight: 600
+      - asset: assets/poppins/Poppins-Black.ttf
+      - asset: assets/poppins/Poppins-Bold.ttf
+        weight: 800
+      - asset: assets/poppins/Poppins-ExtraBold.ttf
+        weight: 900
       #       - asset: fonts/Schyler-Italic.ttf
       #         style: italic
       #   - family: Trajan Pro

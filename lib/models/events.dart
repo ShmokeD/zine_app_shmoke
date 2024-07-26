@@ -12,6 +12,7 @@ class Events {
 
   Events.fromJson(Map<String, dynamic> json) {
     name = json['name'];
+    
     description = json['description'];
     venue = json['venue'];
     timeDate = json['timeDate'];
