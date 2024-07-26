@@ -69,10 +69,13 @@ class EventsScreen extends StatelessWidget {
       body: Consumer<PublicEventsVM>(
         builder: (context, evm, _) {
           evm.loadEvents();
-          if (evm.events.isNotEmpty && _controller.hasClients) {
-            _controller.animateTo(evm.selectedIndex * 154,
-                curve: Curves.easeInOut, duration: Duration(milliseconds: 250));
+          if (evm.eventsOnSelectedDay.isNotEmpty && _controller.hasClients) {
+            _controller.animateTo(
+                evm.selectedIndex * ((availableHeight / 6) + 16),
+                curve: Curves.easeInOut,
+                duration: Duration(milliseconds: 250));
           }
+
           return Column(
             children: [
               Container(
@@ -108,10 +111,14 @@ class EventsScreen extends StatelessWidget {
                           return EventTile(
                             evm: evm,
                             index: index,
-                            event: evm.events[index],
+                            event: evm.eventsOnSelectedDay.isNotEmpty
+                                ? evm.eventsOnSelectedDay[index]
+                                : evm.events[index],
                           );
                         },
-                        itemCount: evm.events.length,
+                        itemCount: evm.eventsOnSelectedDay.isNotEmpty
+                            ? evm.eventsOnSelectedDay.length
+                            : evm.events.length,
                       ),
                     ))
                   : Expanded(
