@@ -78,10 +78,9 @@ class RegisterForm extends StatelessWidget {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter an email address";
+                      } else if (!emailReg.hasMatch(authVm.email)) {
+                        return "Not a valid Email";
                       }
-                      // } else if (!emailReg.hasMatch(authVm.email)) {
-                      //   return "Not a valid Email. Use College Email to Login";
-                      // }
                       return null;
                     },
                     textInputAction: TextInputAction.next,

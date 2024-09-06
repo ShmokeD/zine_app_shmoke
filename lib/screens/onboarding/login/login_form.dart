@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zineapp2023/components/constants.dart';
 import '../../../screens/onboarding/login/view_models/login_auth_vm.dart';
 import '../../../theme/color.dart';
 import '../../../common/routing.dart';
@@ -42,10 +43,9 @@ class LoginForm extends StatelessWidget {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter an email address";
+                      } else if (!emailReg.hasMatch(authVm.email)) {
+                        return "Not a valid Email";
                       }
-                      // } else if (!emailReg.hasMatch(authVm.email)) {
-                      //   return "Not a valid Email";
-                      // }
                       return null;
                     },
                     textInputAction: TextInputAction.next,
