@@ -113,6 +113,7 @@ class AuthRepo {
 
   Future<List<UserTask>?> getTasks(uid) async {
     //FIXME: Implement tits
+    return [];
   }
 
   Future<List<Rooms>?> getRoomIds(uid) async {
